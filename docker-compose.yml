@@ -15,10 +15,11 @@ services:
     deploy:
       resources:
         limits:
-          memory: 8g
+          memory: 2048m
         reservations:
           devices:
             - driver: nvidia
+              device_ids: ['1']
               capabilities: [gpu]
 
   discordtts:
