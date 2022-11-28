@@ -22,13 +22,13 @@ services:
               capabilities: [gpu]
 
   discordtts:
-    image: discordtts
+    image: ghcr.io/yanorei32/discord-tts:0.1.2
     hostname: discordtts
     container_name: discordtts__discordtts
     depends_on:
       - voicevox
 
-    restart: always
+    restart: unless-stopped
 
     environment:
       VOICEVOX_HOST: http://voicevox:50021
