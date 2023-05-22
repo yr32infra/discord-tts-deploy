@@ -1,40 +1,17 @@
 version: '3.9'
 services:
-  voicevox:
-    image: voicevox/voicevox_engine:nvidia-0.13.2@sha256:b674ebc621670cfca8ac7f078c65bfd2566035a119da87d9776f7014037961c8
-    hostname: voicevox
-    container_name: discordtts__voicevox
-    restart: unless-stopped
-
-    expose:
-      - 50021
-
-    networks:
-      - voicevox_discordtts
-
-    deploy:
-      resources:
-        limits:
-          memory: 2048m
-        reservations:
-          devices:
-            - driver: nvidia
-              device_ids: ['0']
-              capabilities: [gpu]
-
   discordtts:
-    image: ghcr.io/yanorei32/discord-tts:0.1.2
+    #image: discord-tts
+    image: ghcr.io/yanorei32/discord-tts:latest@sha256:adc1d4ad86e76758692b5064e8e54a74a1107295030939fad475559b27e37e1d
+
     hostname: discordtts
     container_name: discordtts__discordtts
-    depends_on:
-      - voicevox
 
     restart: unless-stopped
 
     environment:
-      VOICEVOX_HOST: http://voicevox:50021
-      STATE_PATH: /var/discordtts/state.json
-      TMP_PATH: /tmp/
+      VOICEVOX_HOST: http://192.168.0.43:50021
+      PERSISTENT_PATH: /var/discordtts/state.json
       DISCORD_TOKEN: ${DISCORD_TOKEN}
 
     volumes:
@@ -43,8 +20,7 @@ services:
         target: /var/discordtts/
 
     networks:
-      - voicevox_discordtts
-      - discordtts_internet
+      - discordtts_default
 
     deploy:
       resources:
@@ -56,9 +32,5 @@ volumes:
     name: discordtts__data
 
 networks:
-  voicevox_discordtts:
-    name: discordtts__voicevox_discordtts
-    internal: true
-
-  discordtts_internet:
-    name: discordtts__discordtts_internet
+  discordtts_default:
+    name: discordtts__default
