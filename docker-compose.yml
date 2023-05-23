@@ -10,9 +10,10 @@ services:
     restart: unless-stopped
 
     environment:
-      VOICEVOX_HOST: http://192.168.0.43:50021
+      VOICEVOX_HOST: https://voicevox.yr32.net/
       PERSISTENT_PATH: /var/discordtts/state.json
       DISCORD_TOKEN: ${DISCORD_TOKEN}
+      ADDITIONAL_HEADERS: ${ADDITIONAL_HEADERS}
 
     volumes:
       - type: volume
