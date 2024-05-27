@@ -4,7 +4,7 @@ services:
     image: ghcr.io/yanorei32/discord-tts:latest@sha256:78903db6da014527075c6fb066c878d4a8ef48fa05c3054a1f3d71271b9b7ef8
 
     hostname: discordtts
-    container_name: discordtts__discordtts
+    container_name: discordtts${VARIANT:-}__discordtts
 
     restart: unless-stopped
 
@@ -29,8 +29,8 @@ services:
 
 volumes:
   data:
-    name: discordtts__data
+    name: discordtts${VARIANT:-}__data
 
 networks:
   discordtts_default:
-    name: discordtts__default
+    name: discordtts${VARIANT:-}__default
