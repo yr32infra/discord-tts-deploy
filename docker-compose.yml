@@ -1,7 +1,7 @@
 version: '3.9'
 services:
   discordtts:
-    image: ghcr.io/yanorei32/discord-tts:latest@sha256:532a52ce72ab81bb782091671c1eb780bbb3039ba0d69e00873276e70ffbd1cd
+    image: ghcr.io/yanorei32/discord-tts:latest@sha256:66f062be5734c6dd0f87fd41722e3ea956f392c296bf6e5a9340b9c59754fabd
 
     hostname: discordtts
     container_name: discordtts${VARIANT:-}__discordtts
