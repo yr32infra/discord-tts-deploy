@@ -1,7 +1,7 @@
 version: '3.9'
 services:
   discordtts:
-    image: ghcr.io/yanorei32/discord-tts:v0.12.0
+    image: ghcr.io/yanorei32/discord-tts:v0.13.0
 
     hostname: discordtts
     container_name: discordtts${VARIANT:-}__discordtts
